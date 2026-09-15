@@ -1,0 +1,161 @@
+/*
+  Tokens — un solo lugar para cambiar decisiones de look.
+  Admin Unfold (admin-unfold.css) y comprador (app.css) importan esto.
+
+  Parámetros típicos:
+    --color-accion / --p-obra     acento (aguamarina)
+    --radio / --ctrl-alto         forma y altura de controles
+    --color-ico-obra / peligro    psicología color acciones de lista
+    --side-w / --kpi-cols         layout
+  Tema de prueba: themes/aguamarina-fuerte.css
+*/
+:root {
+  /* ——— Primitivos (cerca de Tailwind/Unfold base) ——— */
+  --p-zinc-950: #0f172a;
+  --p-zinc-900: #1e293b;
+  --p-zinc-800: #334155;
+  --p-zinc-700: #475569;
+  --p-zinc-600: #64748b;
+  --p-zinc-500: #94a3b8;
+  --p-zinc-400: #94a3b8;
+  --p-zinc-300: #cbd5e1;
+  --p-zinc-200: #e2e8f0;
+  --p-zinc-100: #f1f5f9;
+  --p-zinc-50: #f8fafc;
+  --p-blanco: #f8fafc;
+  --p-blanco-puro: #ffffff;
+  --p-obra: #0d9488;
+  --p-obra-clara: #5eead4;
+  --p-obra-brillo: #2dd4bf;
+  --p-obra-ink: #0f766e;
+  --p-obra-soft: #f0fdfa;
+  --p-ok: #0f8a4c;
+  --p-ok-bg: #e6f7ee;
+  --p-error: #d92d20;
+  --p-error-ink: #b91c1c;
+  --p-error-bg: #fef3f2;
+
+  /* ——— Semánticos ——— */
+  --color-texto: #3f3f46; /* font-default-light Unfold-ish */
+  --color-texto-suave: #71717a;
+  --color-texto-muted: #a1a1aa;
+  --color-texto-forte: #18181b;
+  --color-fondo: var(--p-zinc-50); /* = Unfold bg-base-50 */
+  --color-superficie: var(--p-blanco-puro); /* = Unfold main white */
+  --color-borde: var(--p-zinc-200);
+  --color-borde-suave: var(--p-zinc-100);
+  --color-borde-campo: var(--p-zinc-300); /* inputs: contraste visible sobre blanco */
+  --color-accion: var(--p-obra);
+  --color-accion-hover: var(--p-obra-ink);
+  --color-accion-ink: var(--p-obra-ink);
+  --color-accion-soft: var(--p-obra-soft);
+  --color-accion-brillo: var(--p-obra-brillo);
+  --color-ok: var(--p-ok);
+  --color-ok-bg: var(--p-ok-bg);
+  --color-error: var(--p-error);
+  --color-error-bg: var(--p-error-bg);
+  /* Sidebar Unfold = base-50; main = white */
+  --color-side: var(--p-zinc-50);
+  --color-side-alt: var(--p-zinc-50);
+  --color-side-borde: var(--p-zinc-200);
+  --color-side-texto: var(--p-zinc-600);
+  --color-ink: var(--p-zinc-950);
+  --color-ink-hover: var(--p-zinc-800);
+  --color-on-dark: #ffffff;
+
+  /* Compat */
+  --zinc-950: var(--p-zinc-950);
+  --zinc-900: var(--p-zinc-900);
+  --zinc-800: var(--p-zinc-800);
+  --zinc-600: var(--p-zinc-600);
+  --zinc-400: var(--p-zinc-400);
+  --zinc-300: var(--p-zinc-300);
+  --zinc-100: var(--p-zinc-100);
+  --blanco: var(--p-blanco);
+  --superficie: var(--p-blanco-puro);
+  --obra: var(--p-obra);
+  --obra-ink: var(--p-obra-ink);
+  --obra-soft: var(--p-obra-soft);
+  --ok: var(--p-ok);
+  --ok-bg: var(--p-ok-bg);
+  --error: var(--p-error);
+  --error-bg: var(--p-error-bg);
+
+  /* Tipografía = Unfold Inter — escala canónica (DESIGN.md) */
+  --fuente: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --mono-datos: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.8125rem;
+  --texto-base: 0.875rem;
+  --texto-md: 0.875rem;
+  --texto-1: 1rem;
+  --texto-lg: 1.125rem;
+  --texto-titulo: 1.25rem;
+  --texto-xl: 1.375rem;
+  --texto-2xl: 1.5rem;
+  --texto-kpi: 1.75rem;
+  --texto-display: 2rem;
+  --texto-ico: 1.125rem;
+  --peso-medio: 500;
+  --peso-semi: 600;
+  --peso-bold: 700;
+  --leading: 1.5;
+  --tracking-tight: -0.015em;
+
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-5: 1.25rem;
+  --espacio-6: 1.5rem;
+  --espacio-8: 2rem;
+
+  --radio: var(--border-radius, 10px);
+  --radio-sm: 6px;
+  --radio-pill: 999px;
+  --radio-marca: 6px;
+
+  --sombra: 0 1px 2px color-mix(in srgb, var(--p-zinc-950) 6%, transparent),
+    0 4px 12px color-mix(in srgb, var(--p-zinc-950) 4%, transparent);
+  --sombra-card: 0 1px 2px color-mix(in srgb, var(--p-zinc-950) 5%, transparent);
+  --sombra-accion: 0 1px 2px color-mix(in srgb, var(--p-obra) 25%, transparent);
+  --sombra-marca: none;
+  --sombra-flotante: 0 4px 12px color-mix(in srgb, var(--p-zinc-950) 24%, transparent);
+  --sombra-flotante-hover: 0 6px 14px color-mix(in srgb, var(--p-zinc-950) 26%, transparent);
+  --sombra-atajo: 0 8px 24px color-mix(in srgb, var(--p-zinc-950) 8%, transparent);
+
+  --side-w: 288px;
+  --contenido-max: 100%;
+  --card-min: 240px;
+  --auth-max: 380px;
+  --kpi-cols: 3;
+  --prod-ratio: 5 / 4;
+
+  --duracion: 150ms;
+  --duracion-lenta: 250ms;
+  --ease: ease-out;
+
+  --z-top: 15;
+  --z-toast: 80;
+  --z-salta: 100;
+
+  --ctrl-alto: 2.375rem; /* ~38px Unfold */
+  --ctrl-alto-sm: 2rem;
+  --focus-anillo: 2px solid var(--color-accion);
+  --focus-offset: 2px;
+
+  /* ——— Acciones de lista (Editar / Eliminar) ——— */
+  --color-ico-obra: var(--color-accion);
+  --color-ico-obra-hover: var(--color-accion-ink);
+  --color-ico-obra-bg: var(--color-accion-soft);
+  --color-ico-peligro: var(--color-error);
+  --color-ico-peligro-hover: var(--p-error-ink);
+  --color-ico-peligro-bg: var(--color-error-bg);
+  --size-ico-btn: 2.75rem; /* 44px touch */
+  --size-ico-glyph: 1.25rem;
+  --radio-ico: var(--radio-sm);
+
+  /* ——— Foto producto (admin) ——— */
+  --prod-foto-size: 6rem; /* 96px */
+  --prod-foto-ico: 1.75rem;
+}

@@ -1,0 +1,59 @@
+/* Componente: chip (categoría) + filtro catálogo */
+
+.chip {
+  justify-self: start;
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radio-pill);
+  background: var(--color-borde-suave);
+  color: var(--p-zinc-800);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.filtro-cats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-2);
+}
+
+.chip--filtro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  height: var(--ctrl-alto);
+  padding: 0 var(--espacio-3);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none !important;
+  background: var(--color-superficie);
+  border: 1px solid color-mix(in srgb, var(--color-borde) 70%, transparent);
+  color: var(--color-texto);
+  transition:
+    background-color var(--duracion) var(--ease),
+    border-color var(--duracion) var(--ease),
+    color var(--duracion) var(--ease);
+}
+
+.chip--filtro:hover {
+  border-color: var(--color-accion);
+  color: var(--color-accion-ink);
+}
+
+.chip--filtro.is-active {
+  background: var(--color-accion);
+  border-color: var(--color-accion);
+  color: var(--color-on-dark);
+}
+
+.chip--filtro:focus-visible {
+  outline: var(--focus-anillo);
+  outline-offset: var(--focus-offset);
+}

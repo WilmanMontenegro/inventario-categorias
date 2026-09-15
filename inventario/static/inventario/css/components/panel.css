@@ -1,0 +1,27 @@
+/* Componente: panel de sección (cabecera + contenido) */
+
+.panel {
+  display: grid;
+  gap: var(--espacio-4);
+}
+
+.panel__cab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espacio-2);
+}
+
+.panel__titulo {
+  margin: 0;
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.panel__meta {
+  margin: 0;
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}

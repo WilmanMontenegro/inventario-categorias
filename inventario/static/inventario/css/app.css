@@ -1,0 +1,129 @@
+/*
+  Entry CSS comprador — importá solo este archivo desde templates.
+  Orden: tokens → base → layouts → components.
+
+  Cambiar decisión de diseño = tokens.css (o themes/*.css).
+  Componentes no llevan hex sueltos: usan var(--…).
+*/
+
+@import url("tokens.css?v=ds100");
+@import url("base.css?v=ds100");
+
+@import url("layouts/dash.css?v=ds100");
+@import url("layouts/auth.css?v=ds100");
+@import url("layouts/compra.css?v=ds100");
+
+@import url("components/button.css?v=ds100");
+@import url("components/badge.css?v=ds100");
+@import url("components/brand.css?v=ds100");
+@import url("components/chip.css?v=ds100");
+@import url("components/toast.css?v=ds100");
+@import url("components/alert.css?v=ds100");
+@import url("components/form.css?v=ds100");
+@import url("components/table.css?v=ds100");
+@import url("components/card.css?v=ds100");
+@import url("components/kpi.css?v=ds100");
+@import url("components/product-card.css?v=ds100");
+@import url("components/panel.css?v=ds100");
+@import url("components/empty.css?v=ds100");
+@import url("components/lista-acciones.css?v=ds100");
+
+/* Drawer móvil (en entry para no depender de caché de @import anidados) */
+@media (max-width: 900px) {
+  .dash {
+    grid-template-columns: 1fr;
+  }
+
+  .dash__menu {
+    appearance: none;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+    color: var(--color-texto-forte);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .dash__menu:focus-visible {
+    outline: 2px solid var(--color-accion);
+    outline-offset: 2px;
+  }
+
+  .dash__menu .material-symbols-outlined {
+    font-size: var(--texto-xl);
+  }
+
+  .dash__nav-cerrar {
+    appearance: none;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radio);
+    background: transparent;
+    color: var(--color-texto-suave);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .dash__backdrop {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    z-index: calc(var(--z-top) + 5);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--p-zinc-950) 40%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms var(--ease, ease);
+  }
+
+  .dash__side {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: calc(var(--z-top) + 6);
+    width: min(20rem, 88vw) !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    border-right: 1px solid var(--color-side-borde);
+    border-bottom: 0 !important;
+    transform: translateX(-105%);
+    transition: transform 200ms var(--ease, ease);
+    box-shadow: none;
+  }
+
+  .dash.is-nav-open .dash__side {
+    transform: translateX(0);
+    box-shadow: var(--sombra);
+  }
+
+  .dash.is-nav-open .dash__backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body:has(.dash.is-nav-open) {
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash__side,
+  .dash__backdrop {
+    transition: none;
+  }
+}

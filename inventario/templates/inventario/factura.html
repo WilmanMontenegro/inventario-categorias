@@ -1,0 +1,64 @@
+{% extends "inventario/base_compra.html" %}
+{% load dinero %}
+{% block title %}Factura {{ factura.numero }}{% endblock %}
+{% block compra_cabecera %}
+<h1 class="dash__titulo" id="titulo-pagina">Factura {{ factura.numero }}</h1>
+{% endblock %}
+{% block compra_acciones %}
+<a class="btn btn--ghost btn--compacto" href="{% url 'catalogo' %}">Volver al catálogo</a>
+{% endblock %}
+{% block compra_contenido %}
+
+<div class="panel-aviso panel-aviso--ok" role="status">
+  Compra registrada. El inventario del container ya bajó.
+</div>
+
+<dl class="factura-datos">
+  <div>
+    <dt>Empresa</dt>
+    <dd>{{ factura.empresa.nombre }}</dd>
+  </div>
+  <div>
+    <dt>NIT</dt>
+    <dd>{{ factura.empresa.nit }}</dd>
+  </div>
+  <div>
+    <dt>Container</dt>
+    <dd>{{ factura.container.codigo }}</dd>
+  </div>
+  <div>
+    <dt>Fecha</dt>
+    <dd>{{ factura.creado|date:"d/m/Y H:i" }}</dd>
+  </div>
+  <div>
+    <dt>Total</dt>
+    <dd>{{ factura.total|cop }}</dd>
+  </div>
+</dl>
+
+<div class="card card--tabla">
+  <div class="tabla-wrap">
+    <table class="tabla">
+      <caption class="visually-hidden">Detalle de la factura {{ factura.numero }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col" class="num">Cantidad</th>
+          <th scope="col" class="num">Precio de venta</th>
+          <th scope="col" class="num">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for linea in factura.lineas.all %}
+        <tr>
+          <th scope="row">{{ linea.producto.nombre }}</th>
+          <td class="num">{{ linea.cantidad }}</td>
+          <td class="num">{{ linea.precio_unitario|cop }}</td>
+          <td class="num">{{ linea.subtotal|cop }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

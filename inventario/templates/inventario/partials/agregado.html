@@ -1,0 +1,7 @@
+<div class="toast toast--ok" role="status">
+  <p class="toast__titulo">Agregado</p>
+  <p class="toast__texto">{{ producto }} ya está en el carrito.</p>
+</div>
+<span id="carrito-badge" hx-swap-oob="true">
+  {% include "inventario/partials/carrito_badge.html" %}
+</span>

@@ -1,0 +1,88 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+  {% include "unfold/helpers/site_branding.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="admin-dash">
+    <header class="admin-dash__hero">
+    <p class="admin-dash__lead">
+      {% if dash.container_activo %}
+        Container activo <strong>{{ dash.container_activo.codigo }}</strong> · carga inventario y vende a empresas
+      {% else %}
+        Crea el primer container para empezar la demo
+      {% endif %}
+    </p>
+  </header>
+
+  <section class="admin-dash__kpis" aria-label="Resumen">
+    <article class="admin-kpi{% if dash.container_activo %} admin-kpi--acento{% endif %}">
+      <p class="admin-kpi__label">Container</p>
+      <p class="admin-kpi__valor admin-kpi__valor--texto">
+        {% if dash.container_activo %}{{ dash.container_activo.codigo }}{% else %}—{% endif %}
+      </p>
+      <p class="admin-kpi__hint">{{ dash.containers }} en total</p>
+    </article>
+    <article class="admin-kpi">
+      <p class="admin-kpi__label">Productos</p>
+      <p class="admin-kpi__valor">{{ dash.productos }}</p>
+      <p class="admin-kpi__hint">En catálogo</p>
+    </article>
+    <article class="admin-kpi">
+      <p class="admin-kpi__label">Unidades</p>
+      <p class="admin-kpi__valor">{{ dash.unidades }}</p>
+      <p class="admin-kpi__hint">{{ dash.lineas_stock }} con stock</p>
+    </article>
+    <article class="admin-kpi">
+      <p class="admin-kpi__label">Empresas</p>
+      <p class="admin-kpi__valor">{{ dash.empresas }}</p>
+      <p class="admin-kpi__hint">Compradoras</p>
+    </article>
+    <article class="admin-kpi">
+      <p class="admin-kpi__label">Facturas</p>
+      <p class="admin-kpi__valor">{{ dash.facturas }}</p>
+      <p class="admin-kpi__hint">Emitidas</p>
+    </article>
+  </section>
+
+  <section class="admin-dash__atajos" aria-label="Atajos de carga">
+    <h2 class="admin-dash__sec-titulo">Trabajo frecuente</h2>
+    <div class="admin-atajo-grid">
+      <a class="admin-atajo admin-atajo--obra" href="{% url 'admin:inventario_container_changelist' %}">
+        <span class="admin-atajo__nombre">Containers</span>
+        <span class="admin-atajo__desc">Alta y mercancía del container</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+      <a class="admin-atajo" href="{% url 'admin:inventario_producto_changelist' %}">
+        <span class="admin-atajo__nombre">Productos</span>
+        <span class="admin-atajo__desc">Nombre, categoría e imagen</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+      <a class="admin-atajo" href="{% url 'admin:inventario_inventario_changelist' %}">
+        <span class="admin-atajo__nombre">Inventario</span>
+        <span class="admin-atajo__desc">Cantidad, costo base, IVA, precio de venta</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+      <a class="admin-atajo" href="{% url 'admin:inventario_empresa_changelist' %}">
+        <span class="admin-atajo__nombre">Empresas</span>
+        <span class="admin-atajo__desc">NIT y datos de la empresa</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+      <a class="admin-atajo" href="{% url 'admin:inventario_factura_changelist' %}">
+        <span class="admin-atajo__nombre">Facturas</span>
+        <span class="admin-atajo__desc">Compras confirmadas</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+      <a class="admin-atajo" href="{% url 'admin:inventario_categoria_changelist' %}">
+        <span class="admin-atajo__nombre">Categorías</span>
+        <span class="admin-atajo__desc">Rubros del producto</span>
+        <span class="admin-atajo__go">Abrir</span>
+      </a>
+    </div>
+  </section>
+</div>
+{% endblock %}

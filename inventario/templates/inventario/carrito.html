@@ -1,0 +1,67 @@
+{% extends "inventario/base_compra.html" %}
+{% load dinero %}
+{% block title %}Carrito{% endblock %}
+{% block compra_cabecera %}
+<h1 class="dash__titulo" id="titulo-pagina">Carrito</h1>
+{% endblock %}
+{% block compra_acciones %}
+<a class="btn btn--ghost btn--compacto" href="{% url 'catalogo' %}">Seguir comprando</a>
+{% endblock %}
+{% block compra_contenido %}
+
+{% if error %}
+<div class="panel-aviso panel-aviso--error" role="alert">{{ error }}</div>
+{% endif %}
+
+{% if not carrito or not carrito.lineas.all %}
+<div class="vacio" role="status">
+  <h2 class="vacio__titulo">El carrito está vacío</h2>
+  <p class="vacio__texto">Agrega productos desde el catálogo.</p>
+  <a class="btn btn--obra" href="{% url 'catalogo' %}">Ir al catálogo</a>
+</div>
+{% else %}
+<div class="card card--tabla">
+  <div class="tabla-wrap">
+    <table class="tabla">
+      <caption class="visually-hidden">Productos en el carrito</caption>
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col" class="num">Cantidad</th>
+          <th scope="col" class="num">Precio de venta</th>
+          <th scope="col" class="num">Subtotal</th>
+          <th scope="col"><span class="visually-hidden">Acciones</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for linea in carrito.lineas.all %}
+        <tr>
+          <th scope="row">{{ linea.inventario.producto.nombre }}</th>
+          <td class="num">{{ linea.cantidad }}</td>
+          <td class="num">{{ linea.precio_unitario|cop }}</td>
+          <td class="num">{{ linea.subtotal|cop }}</td>
+          <td class="tabla__accion">
+            <form method="post" action="{% url 'quitar_linea' linea.id %}">
+              {% csrf_token %}
+              <button class="btn btn--ghost btn--compacto" type="submit" aria-label="Quitar {{ linea.inventario.producto.nombre }} del carrito">Quitar</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="totales totales--barra card">
+  <div>
+    <p class="totales__label">Total a pagar</p>
+    <p class="totales__suma">{{ carrito.total|cop }}</p>
+  </div>
+  <form method="post" action="{% url 'confirmar' %}">
+    {% csrf_token %}
+    <button class="btn btn--obra" type="submit">Confirmar y generar factura</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

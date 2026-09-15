@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<div class="prod-foto">
+    <div class="prod-foto__marco{% if not widget.is_initial %} prod-foto__marco--vacio{% endif %}">
+        {% if widget.is_initial %}
+            <img src="{{ widget.value.url }}" alt="{% trans 'Vista previa' %}" width="96" height="96" class="prod-foto__img">
+        {% else %}
+            <span class="material-symbols-outlined prod-foto__placeholder" aria-hidden="true">add_a_photo</span>
+        {% endif %}
+
+        <div class="prod-foto__bar">
+            <label for="{{ widget.attrs.id }}" class="prod-foto__ico" title="{% if widget.is_initial %}{% trans 'Cambiar foto' %}{% else %}{% trans 'Elegir foto' %}{% endif %}">
+                <span class="material-symbols-outlined" aria-hidden="true">{% if widget.is_initial %}photo_camera{% else %}add_a_photo{% endif %}</span>
+                <span class="prod-foto__sr">{% if widget.is_initial %}{% trans "Cambiar foto" %}{% else %}{% trans "Elegir foto" %}{% endif %}</span>
+            </label>
+            {% if widget.is_initial and not widget.required %}
+                <label for="{{ widget.checkbox_id }}" class="prod-foto__ico prod-foto__ico--quitar" title="{% trans 'Quitar foto' %}">
+                    <span class="material-symbols-outlined" aria-hidden="true">delete</span>
+                    <span class="prod-foto__sr">{% trans "Quitar foto" %}</span>
+                </label>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="prod-foto__file">
+        <input type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %} />
+    </div>
+    {% if widget.is_initial and not widget.required %}
+        <input type="checkbox" class="prod-foto__check" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" />
+    {% endif %}
+</div>

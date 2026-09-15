@@ -1,0 +1,30 @@
+/* Marca Eureka s&s */
+
+.brand-logo {
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+.brand-logo--auth {
+  width: min(7.25rem, 48%);
+  height: auto;
+  margin: 0 auto var(--espacio-2);
+}
+
+.brand-logo--side {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radio-sm);
+  background: var(--color-superficie);
+}
+
+/* Admin Unfold: ícono de marca sin recorte agresivo */
+img[src*="eureka-mark"] {
+  object-fit: contain !important;
+  width: auto !important;
+  max-width: 38px !important;
+  height: 38px !important;
+  background: transparent !important;
+}

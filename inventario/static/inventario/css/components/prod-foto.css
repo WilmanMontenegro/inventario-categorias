@@ -1,0 +1,103 @@
+/* Componente: widget foto producto (admin) — solo tokens */
+
+.prod-foto__marco {
+  position: relative;
+  width: var(--prod-foto-size);
+  height: var(--prod-foto-size);
+  border-radius: var(--radio);
+  overflow: hidden;
+  border: 1px solid var(--color-borde);
+  background: var(--color-fondo);
+}
+
+.prod-foto__marco--vacio {
+  display: grid;
+  place-items: center;
+  border-style: dashed;
+}
+
+.prod-foto__img {
+  display: block;
+  width: var(--prod-foto-size);
+  height: var(--prod-foto-size);
+  object-fit: cover;
+}
+
+.prod-foto__placeholder {
+  font-size: var(--texto-kpi);
+  color: var(--color-texto-muted);
+}
+
+.prod-foto__bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: var(--espacio-1);
+  background: linear-gradient(transparent, color-mix(in srgb, var(--color-ink) 55%, transparent));
+}
+
+.prod-foto__ico {
+  display: grid;
+  place-items: center;
+  width: var(--prod-foto-ico);
+  height: var(--prod-foto-ico);
+  border-radius: var(--radio-sm);
+  color: var(--color-on-dark);
+  cursor: pointer;
+}
+
+.prod-foto__ico:hover,
+.prod-foto__ico:focus-visible {
+  background: color-mix(in srgb, var(--color-on-dark) 22%, transparent);
+  outline: none;
+}
+
+.prod-foto__ico .material-symbols-outlined {
+  font-size: var(--texto-ico);
+  line-height: 1;
+}
+
+.prod-foto__ico--quitar:hover,
+.prod-foto__ico--quitar:focus-visible {
+  background: color-mix(in srgb, var(--color-error) 85%, transparent);
+}
+
+.prod-foto__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.prod-foto__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.prod-foto__check {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.prod-foto:has(.prod-foto__check:checked) .prod-foto__img {
+  opacity: 0.35;
+}
+
+.prod-foto:has(.prod-foto__check:checked) .prod-foto__ico--quitar {
+  background: color-mix(in srgb, var(--color-error) 85%, transparent);
+}

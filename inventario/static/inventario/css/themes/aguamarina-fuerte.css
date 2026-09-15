@@ -1,0 +1,14 @@
+/*
+  Ejemplo de tema — no se carga solo.
+  Para probar: en app.css agregá `@import url("themes/aguamarina-fuerte.css");` al final,
+  o en <html> poné data-theme y usá el bloque de abajo.
+*/
+
+:root[data-theme="aguamarina-fuerte"] {
+  --p-obra: #0f766e;
+  --p-obra-ink: #115e59;
+  --radio: 16px;
+  --side-w: 260px;
+  --kpi-cols: 3;
+  --sombra-accion: 0 10px 24px color-mix(in srgb, var(--p-obra) 45%, transparent);
+}

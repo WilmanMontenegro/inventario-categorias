@@ -1,0 +1,136 @@
+/* Ficha producto (admin): densa, simétrica — foto + campos alineados */
+
+.model-producto.change-form {
+  --prod-foto-size: 9.5rem;
+  --ficha-pad: 0.75rem 1rem;
+}
+
+.model-producto.change-form .form-rows {
+  display: grid;
+  grid-template-columns: calc(var(--prod-foto-size) + 2rem) minmax(0, 1fr);
+  grid-template-rows: 1fr 1fr auto;
+  align-items: stretch;
+  column-gap: 0;
+  row-gap: 0;
+  width: 100%;
+}
+
+.model-producto.change-form .form-rows > .form-row {
+  padding: var(--ficha-pad);
+  margin: 0;
+}
+
+.model-producto.change-form .form-rows > .form-row:has(.field-imagen) {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: flex;
+  align-items: flex-start;
+  border-right: 1px solid var(--color-borde);
+}
+
+.model-producto.change-form .form-rows > .form-row:has(.field-nombre) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.model-producto.change-form .form-rows > .form-row:has(.field-categoria) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.model-producto.change-form .form-rows > .form-row:has(.field-descripcion) {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+.model-producto.change-form .field-imagen,
+.model-producto.change-form .field-nombre,
+.model-producto.change-form .field-categoria,
+.model-producto.change-form .field-descripcion {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.35rem;
+  height: 100%;
+  width: 100%;
+}
+
+.model-producto.change-form .field-imagen > div:first-child,
+.model-producto.change-form .field-nombre > div:first-child,
+.model-producto.change-form .field-categoria > div:first-child,
+.model-producto.change-form .field-descripcion > div:first-child {
+  width: auto;
+  min-width: 0;
+  height: auto;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+.model-producto.change-form .prod-foto {
+  width: var(--prod-foto-size);
+}
+
+.model-producto.change-form .prod-foto__marco,
+.model-producto.change-form .prod-foto__img {
+  width: 100%;
+  height: var(--prod-foto-size);
+}
+
+.model-producto.change-form .field-nombre input,
+.model-producto.change-form .field-categoria .related-widget-wrapper,
+.model-producto.change-form .field-descripcion textarea {
+  width: 100%;
+  max-width: none;
+}
+
+/* Unfold limita campos a max-w-2xl — en ficha usamos todo el ancho útil */
+.model-producto.change-form .field-nombre .max-w-2xl,
+.model-producto.change-form .field-categoria .max-w-2xl,
+.model-producto.change-form .field-descripcion .max-w-2xl,
+.model-producto.change-form .field-nombre .grow,
+.model-producto.change-form .field-categoria .grow,
+.model-producto.change-form .field-descripcion .grow {
+  max-width: none !important;
+  width: 100%;
+}
+
+.model-producto.change-form .field-categoria .related-widget-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.model-producto.change-form .field-categoria .related-widget-wrapper > select,
+.model-producto.change-form .field-categoria .related-widget-wrapper > .select2-container,
+.model-producto.change-form .field-categoria .related-widget-wrapper > div:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.model-producto.change-form .field-descripcion textarea {
+  min-height: 4.75rem !important;
+  height: 4.75rem !important;
+  max-height: 8rem;
+  resize: vertical;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .model-producto.change-form .form-rows {
+    grid-template-columns: 1fr;
+  }
+
+  .model-producto.change-form .form-rows > .form-row:has(.field-imagen),
+  .model-producto.change-form .form-rows > .form-row:has(.field-nombre),
+  .model-producto.change-form .form-rows > .form-row:has(.field-categoria),
+  .model-producto.change-form .form-rows > .form-row:has(.field-descripcion) {
+    grid-column: auto;
+    grid-row: auto;
+    border-right: 0;
+  }
+
+  .model-producto.change-form .form-rows > .form-row:has(.field-imagen) {
+    justify-content: center;
+  }
+}

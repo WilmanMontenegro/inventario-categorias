@@ -1,0 +1,98 @@
+{% extends "inventario/base_compra.html" %}
+{% load dinero %}
+{% block title %}Catálogo · {{ container_activo.codigo|default:"sin container" }}{% endblock %}
+{% block compra_cabecera %}
+{% if container_activo %}
+<h1 class="dash__titulo" id="titulo-pagina">Container {{ container_activo.codigo }}</h1>
+<p class="dash__subtitulo">{{ items|length }} producto{{ items|length|pluralize:"s" }}</p>
+{% else %}
+<h1 class="dash__titulo" id="titulo-pagina">Catálogo</h1>
+{% endif %}
+{% endblock %}
+{% block compra_contenido %}
+{% if not container_activo %}
+<div class="vacio" role="status">
+  <h2 class="vacio__titulo">Todavía no hay container</h2>
+  <p class="vacio__texto">Pídele al admin que cargue un container.</p>
+</div>
+{% else %}
+
+{% if categorias %}
+<nav class="filtro-cats" aria-label="Filtrar por categoría">
+  <a
+    class="chip chip--filtro{% if not categoria_activa %} is-active{% endif %}"
+    href="{% url 'catalogo' %}"
+  >Todas</a>
+  {% for cat in categorias %}
+  <a
+    class="chip chip--filtro{% if categoria_activa.id == cat.id %} is-active{% endif %}"
+    href="{% url 'catalogo' %}?categoria={{ cat.id }}"
+  >{{ cat.nombre }}</a>
+  {% endfor %}
+</nav>
+{% endif %}
+
+{% if not items %}
+<div class="vacio" role="status">
+  {% if categoria_activa %}
+  <h2 class="vacio__titulo">Sin productos en {{ categoria_activa.nombre }}</h2>
+  <p class="vacio__texto">Prueba otra categoría o vuelve a todas.</p>
+  <a class="btn btn--obra" href="{% url 'catalogo' %}">Ver todas</a>
+  {% else %}
+  <h2 class="vacio__titulo">Sin inventario disponible</h2>
+  <p class="vacio__texto">Este container no tiene productos con stock.</p>
+  {% endif %}
+</div>
+{% else %}
+<div class="card-grid" role="list">
+  {% for item in items %}
+  <article class="prod-card" role="listitem">
+    {% if item.producto.imagen %}
+    <div class="prod-card__media">
+      <img src="{{ item.producto.imagen.url }}" alt="{{ item.producto.nombre }}" width="480" height="360" loading="lazy" decoding="async">
+    </div>
+    {% else %}
+    <div class="prod-card__media prod-card__media--empty" aria-hidden="true">{{ item.producto.inicial }}</div>
+    {% endif %}
+    <div class="prod-card__body">
+      <span class="chip">{{ item.producto.categoria.nombre }}</span>
+      <h2 class="prod-card__nombre">{{ item.producto.nombre }}</h2>
+      {% if item.producto.descripcion %}
+      <p class="prod-card__desc">{{ item.producto.descripcion }}</p>
+      {% endif %}
+      <p class="prod-card__precio">
+        <span class="visually-hidden">Precio de venta </span>{{ item.precio_venta|cop }}
+      </p>
+      <p class="prod-card__stock">{{ item.cantidad }} disponibles</p>
+    </div>
+    <form
+      class="prod-card__form"
+      method="post"
+      action="{% url 'agregar_carrito' item.id %}"
+      hx-post="{% url 'agregar_carrito' item.id %}"
+      hx-target="#avisos"
+      hx-swap="innerHTML"
+      hx-disabled-elt="button"
+    >
+      {% csrf_token %}
+      <label class="visually-hidden" for="cant-{{ item.id }}">Cantidad de {{ item.producto.nombre }}</label>
+      <input
+        id="cant-{{ item.id }}"
+        type="number"
+        name="cantidad"
+        min="1"
+        max="{{ item.cantidad }}"
+        value="1"
+        inputmode="numeric"
+        required
+        aria-describedby="stock-{{ item.id }}"
+      >
+      <span class="visually-hidden" id="stock-{{ item.id }}">Máximo {{ item.cantidad }}</span>
+      <button class="btn btn--obra" type="submit">Agregar</button>
+    </form>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

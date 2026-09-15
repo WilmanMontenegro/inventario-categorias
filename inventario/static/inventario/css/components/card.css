@@ -1,0 +1,13 @@
+/* Componente: card contenedora */
+
+.card {
+  background: var(--color-superficie);
+  border: 1px solid color-mix(in srgb, var(--color-borde) 65%, transparent);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-card);
+}
+
+.card--tabla {
+  overflow: hidden;
+  padding: 0;
+}

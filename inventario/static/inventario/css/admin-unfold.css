@@ -1,0 +1,31 @@
+/*
+  Entry CSS admin Unfold — mismo tokens que el comprador.
+  Cambiar look: editá tokens.css (o themes/*.css). No hex en componentes.
+  Login de producto: /entrar/ (no customizar /admin/login/).
+*/
+
+@import url("tokens.css");
+@import url("components/lista-acciones.css");
+@import url("components/prod-foto.css");
+@import url("components/ficha-producto.css");
+@import url("components/brand.css");
+@import url("components/admin-dash.css");
+
+/* Campos Unfold (modales / forms): borde visible — token --color-borde-campo */
+.form-field input:not([type="checkbox"]):not([type="hidden"]):not([type="file"]),
+.form-field textarea,
+.form-field select,
+#dialog input:not([type="checkbox"]):not([type="hidden"]),
+#dialog textarea,
+#dialog select {
+  border-color: var(--color-borde-campo) !important;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus,
+#dialog input:focus,
+#dialog textarea:focus,
+#dialog select:focus {
+  border-color: var(--color-accion) !important;
+}

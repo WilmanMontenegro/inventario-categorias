@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+.env
+.env.local
+.env.*.local
+!.env.example
+*.log
+staticfiles/
+media/
+.DS_Store
+Thumbs.db
+
+.impeccable/
+.playwright-mcp/
+
+# Apuntes / docs de trabajo (solo desarrollo en el repo público)
+audio-cliente/
+docs/
+AGENTS.md
+PRODUCT.md
+DESIGN.md
+scripts/

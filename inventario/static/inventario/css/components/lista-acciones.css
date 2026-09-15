@@ -1,0 +1,39 @@
+/* Componente: columna acción (Editar / Eliminar) — solo tokens */
+
+.lista-acciones {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--espacio-1);
+}
+
+.lista-acciones__btn {
+  display: grid;
+  place-items: center;
+  width: var(--size-ico-btn);
+  height: var(--size-ico-btn);
+  border-radius: var(--radio-ico);
+  color: var(--color-ico-obra);
+}
+
+.lista-acciones__btn:hover,
+.lista-acciones__btn:focus-visible {
+  background: var(--color-ico-obra-bg);
+  color: var(--color-ico-obra-hover);
+  outline: none;
+}
+
+.lista-acciones__btn--peligro {
+  color: var(--color-ico-peligro);
+}
+
+.lista-acciones__btn--peligro:hover,
+.lista-acciones__btn--peligro:focus-visible {
+  background: var(--color-ico-peligro-bg);
+  color: var(--color-ico-peligro-hover);
+}
+
+.lista-acciones__btn .material-symbols-outlined {
+  font-size: var(--size-ico-glyph);
+  line-height: 1;
+}

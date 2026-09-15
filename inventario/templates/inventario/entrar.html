@@ -1,0 +1,55 @@
+{% extends "inventario/base.html" %}
+{% load static %}
+{% block title %}Entrar · Eureka s&s{% endblock %}
+{% block body %}
+<div class="auth-page">
+  <main id="contenido" class="auth card" tabindex="-1">
+    <header class="auth__cab">
+      <h1 class="visually-hidden">Entrar</h1>
+      <img
+        class="brand-logo brand-logo--auth"
+        src="{% static 'inventario/brand/eureka-logo.png' %}"
+        alt="Eureka s&amp;s S.A.S"
+        width="160"
+        height="111"
+      >
+      <p>Inventario y compra</p>
+    </header>
+
+    {% if error %}
+    <div class="panel-aviso panel-aviso--error" role="alert">{{ error }}</div>
+    {% endif %}
+
+    <form class="auth__form" method="post" action="{% url 'entrar' %}" novalidate>
+      {% csrf_token %}
+      <div class="campo">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" name="usuario" autocomplete="username" required autofocus>
+      </div>
+      <div class="campo">
+        <label for="clave">Contraseña</label>
+        <input id="clave" name="clave" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn--obra auth-btn" type="submit">Entrar</button>
+    </form>
+
+    <div class="auth__atajos" aria-label="Atajos de demo">
+      <p class="auth__atajos-titulo" id="atajos-titulo">Atajos de demo</p>
+      <div class="auth__atajos-fila" role="group" aria-labelledby="atajos-titulo">
+        <form method="post" action="{% url 'entrar_demo_admin' %}">
+          {% csrf_token %}
+          <button class="btn btn--ghost auth-atajo" type="submit" title="Cargar container">
+            <span class="auth-atajo__rol">Admin</span>
+          </button>
+        </form>
+        <form method="post" action="{% url 'entrar_demo_comprador' %}">
+          {% csrf_token %}
+          <button class="btn btn--ghost auth-atajo" type="submit" title="Catálogo y carrito">
+            <span class="auth-atajo__rol">Comprador</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

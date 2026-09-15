@@ -1,0 +1,20 @@
+/* Componente: aviso / alerta en página */
+
+.panel-aviso {
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radio-sm);
+  border: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+}
+
+.panel-aviso--error {
+  border-color: color-mix(in srgb, var(--color-error) 45%, var(--color-borde));
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.panel-aviso--ok {
+  border-color: color-mix(in srgb, var(--color-ok) 40%, var(--color-borde));
+  background: var(--color-ok-bg);
+  color: var(--color-ok);
+}

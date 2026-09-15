@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-CO" class="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Eureka s&amp;s{% endblock %}</title>
+  <link rel="icon" href="{% static 'inventario/brand/eureka-mark.png' %}" type="image/png">
+  <link rel="stylesheet" href="{% static 'inventario/css/app.css' %}?v=ds100">
+  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+  <script src="{% static 'inventario/ui.js' %}?v=ds100" defer></script>
+</head>
+<body class="antialiased">
+  <!--
+  THESIS: Un solo sistema visual con Unfold — Inter, Material Symbols, sidebar base-50, main blanco, aguamarina.
+  OWN-WORLD: shell compra = patrón Unfold; product cards canónicas; FAB Lucide.
+  STORY: la empresa navega, elige productos y confirma.
+  FIRST VIEWPORT: sidebar Unfold + top + grilla product cards.
+  FORM: Canon · Coherencia admin/compra · 2026-09-11.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+  -->
+  <a class="salta-contenido" href="#contenido">Saltar al contenido</a>
+  <div id="avisos" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+  {% block body %}{% endblock %}
+</body>
+</html>

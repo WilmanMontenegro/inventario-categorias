@@ -1,0 +1,103 @@
+{% extends "inventario/base.html" %}
+{% load static %}
+{% block body %}
+<div class="dash" id="dash">
+  <button
+    type="button"
+    class="dash__backdrop"
+    data-nav-close
+    tabindex="-1"
+    aria-label="Cerrar menú"
+  ></button>
+
+  <aside class="dash__side" id="dash-nav" aria-label="Navegación">
+    <div class="dash__brand">
+      <img
+        class="brand-logo brand-logo--side"
+        src="{% static 'inventario/brand/eureka-mark.png' %}"
+        alt=""
+        width="38"
+        height="38"
+      >
+      <div class="dash__brand-txt">
+        <p class="dash__brand-name">Eureka s&amp;s</p>
+        <p class="dash__brand-sub">Compra empresa</p>
+      </div>
+      <button
+        type="button"
+        class="dash__nav-cerrar"
+        data-nav-close
+        aria-label="Cerrar menú"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">close</span>
+      </button>
+    </div>
+
+    <div class="dash__apps">
+      <h2 class="dash__nav-label">Compra</h2>
+      <nav class="dash__nav" aria-label="Principal">
+        <a
+          class="dash__nav-link{% if request.resolver_match.url_name == 'catalogo' %} is-active{% endif %}"
+          href="{% url 'catalogo' %}"
+        >
+          <span class="material-symbols-outlined dash__nav-ico" aria-hidden="true">storefront</span>
+          <span>Catálogo</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="dash__side-foot">
+      <details class="dash__cuenta">
+        <summary class="dash__cuenta-sum">
+          <span class="dash__avatar" aria-hidden="true">{{ empresa.nombre|default:user.get_username|slice:":1"|upper }}</span>
+          <span class="dash__cuenta-txt">
+            <span class="dash__cuenta-nombre">{{ empresa.nombre|default:user.get_username }}</span>
+            <span class="dash__cuenta-mail">{{ empresa.correo|default:user.email }}</span>
+          </span>
+          <span class="material-symbols-outlined dash__cuenta-more" aria-hidden="true">unfold_more</span>
+        </summary>
+        <div class="dash__cuenta-menu">
+          <form method="post" action="{% url 'salir' %}">{% csrf_token %}
+            <button class="dash__salir" type="submit">
+              Cerrar sesión
+              <span class="material-symbols-outlined" aria-hidden="true">logout</span>
+            </button>
+          </form>
+        </div>
+      </details>
+    </div>
+  </aside>
+
+  <div class="dash__main">
+    <header class="dash__top">
+      <button
+        type="button"
+        class="dash__menu"
+        data-nav-toggle
+        aria-controls="dash-nav"
+        aria-expanded="false"
+        aria-label="Abrir menú"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+      <div class="dash__top-lead">
+        {% block compra_cabecera %}{% endblock %}
+      </div>
+      <div class="dash__top-actions">
+        {% block compra_acciones %}{% endblock %}
+      </div>
+    </header>
+    <main id="contenido" class="dash__contenido" tabindex="-1">
+      {% block compra_contenido %}{% endblock %}
+    </main>
+  </div>
+</div>
+
+<div
+  class="carrito-flotante{% if request.resolver_match.url_name == 'carrito' %} carrito-flotante--oculto{% endif %}"
+>
+  <span id="carrito-badge">
+    {% include "inventario/partials/carrito_badge.html" %}
+  </span>
+</div>
+{% endblock %}

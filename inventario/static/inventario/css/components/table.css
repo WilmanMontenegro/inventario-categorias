@@ -1,0 +1,106 @@
+/* Componente: tabla + barra de totales */
+
+.tabla-wrap {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-superficie);
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla th,
+.tabla td {
+  padding: 0.9rem 1.05rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-borde-suave);
+  vertical-align: middle;
+}
+
+.tabla th[scope="row"] {
+  font-weight: var(--peso-semi);
+  color: var(--color-texto);
+  background: transparent;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: inherit;
+}
+
+.tabla__accion {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.tabla th {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-texto-suave);
+  background: var(--color-fondo);
+}
+
+.tabla td.num,
+.tabla th.num {
+  text-align: right;
+  font-family: var(--mono-datos);
+}
+
+.tabla tr:last-child td,
+.tabla tr:last-child th {
+  border-bottom: 0;
+}
+
+.tabla tbody tr:hover td,
+.tabla tbody tr:hover th {
+  background: color-mix(in srgb, var(--color-accion) 4%, white);
+}
+
+.totales {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espacio-4);
+}
+
+.totales--barra {
+  padding: 1.15rem 1.3rem;
+  position: sticky;
+  bottom: 0.85rem;
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+  border: 0;
+}
+
+.totales__label {
+  margin: 0 0 0.15rem;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-texto-muted);
+}
+
+.totales__suma {
+  margin: 0;
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-semi);
+  font-family: var(--mono-datos);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-on-dark);
+}
+
+@media (max-width: 560px) {
+  .totales--barra {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .totales--barra .btn {
+    width: 100%;
+  }
+}

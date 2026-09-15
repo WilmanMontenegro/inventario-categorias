@@ -1,0 +1,75 @@
+/* Componente: KPI cards */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--kpi-cols), minmax(0, 1fr));
+  gap: var(--espacio-4);
+}
+
+.kpi-card {
+  background: var(--color-superficie);
+  border: 1px solid color-mix(in srgb, var(--color-borde) 65%, transparent);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-card);
+  padding: 1.15rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -40% auto;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-borde-suave) 80%, transparent);
+  pointer-events: none;
+}
+
+.kpi-card--acento {
+  background: linear-gradient(145deg, var(--color-superficie) 40%, var(--color-accion-soft));
+  border-color: color-mix(in srgb, var(--color-accion) 28%, var(--color-borde));
+}
+
+.kpi-card--acento::after {
+  background: color-mix(in srgb, var(--color-accion) 14%, transparent);
+}
+
+.kpi-card__label {
+  margin: 0;
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-semi);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-texto-suave);
+}
+
+.kpi-card__valor {
+  margin: 0.45rem 0 0;
+  font-family: var(--mono-datos);
+  font-size: var(--texto-kpi);
+  font-weight: var(--peso-semi);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.kpi-card__valor--texto {
+  font-family: var(--fuente);
+  font-size: var(--texto-lg);
+  font-weight: var(--peso-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.kpi-card__hint {
+  margin: 0.35rem 0 0;
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+@media (max-width: 900px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
