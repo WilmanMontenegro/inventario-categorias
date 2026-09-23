@@ -36,14 +36,26 @@
   gap: 0.5rem;
 }
 
-/* Admin Unfold: logo completo (wordmark), no el mark recortado */
+/* Admin Unfold: logo completo centrado en el header del sidebar */
+div:has(> a img[src*="technotech-logo"]) {
+  justify-content: center !important;
+}
+
+a:has(> img[src*="technotech-logo"]) {
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  margin: 0 !important;
+}
+
 img[src*="technotech-logo"] {
   object-fit: contain !important;
   width: auto !important;
   max-width: min(11.5rem, 100%) !important;
   height: auto !important;
   max-height: 2.75rem !important;
-  margin-right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   background: transparent !important;
 }
 
