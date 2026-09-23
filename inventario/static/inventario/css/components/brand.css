@@ -36,26 +36,41 @@
   gap: 0.5rem;
 }
 
-/* Admin Unfold: logo completo centrado en el header del sidebar */
-div:has(> a img[src*="technotech-logo"]) {
+/* Admin Unfold: logo completo centrado horizontalmente en el header del sidebar */
+div.border-b.flex:has(img[src*="technotech-logo"]) {
   justify-content: center !important;
+}
+
+div.border-b.flex:has(img[src*="technotech-logo"]) > div {
+  display: flex !important;
+  flex-grow: 1 !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+
+div.border-b.flex:has(img[src*="technotech-logo"]) > span {
+  /* botón cerrar móvil: no empuja el logo */
+  position: absolute;
+  right: 0.75rem;
 }
 
 a:has(> img[src*="technotech-logo"]) {
   display: flex !important;
-  justify-content: center;
-  width: 100%;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
   margin: 0 !important;
+  padding: 0 !important;
 }
 
 img[src*="technotech-logo"] {
   object-fit: contain !important;
   width: auto !important;
-  max-width: min(11.5rem, 100%) !important;
+  max-width: min(12rem, 85%) !important;
   height: auto !important;
   max-height: 2.75rem !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin: 0 auto !important;
   background: transparent !important;
 }
 

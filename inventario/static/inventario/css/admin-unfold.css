@@ -11,6 +11,17 @@
 @import url("components/brand.css");
 @import url("components/admin-dash.css");
 
+/* Logo Technotech centrado en header del sidebar Unfold */
+div.border-b.flex:has(img[src*="technotech-logo"]) {
+  position: relative;
+  justify-content: center !important;
+}
+
+div.border-b.flex:has(img[src*="technotech-logo"]) > div.grow,
+div.border-b.flex:has(img[src*="technotech-logo"]) > div {
+  justify-content: center !important;
+}
+
 /* Campos Unfold (modales / forms): borde visible — token --color-borde-campo */
 .form-field input:not([type="checkbox"]):not([type="hidden"]):not([type="file"]),
 .form-field textarea,
