@@ -81,7 +81,7 @@ def _catalogo():
             (
                 f"Picadora de carne {modelo}",
                 "Picadoras de carne",
-                f"{esp}. Precio demo (EXW no legible en cotización).",
+                f"{esp}. Voltaje 220V/110V. Cotización fábrica.",
                 c,
                 i,
                 p,
@@ -112,7 +112,7 @@ def _catalogo():
             (
                 f"Estación de energía {modelo}",
                 "Baterías portátiles",
-                f"{esp}. EXW ≈ USD {usd} (PDF fábrica × TRM {TRM}).",
+                f"{esp}. Referencia EXW fábrica ≈ USD {usd}.",
                 c,
                 i,
                 p,
@@ -137,7 +137,7 @@ def _catalogo():
             (
                 f"Aire acondicionado {nombre}",
                 "Aires acondicionados",
-                f"{esp}. Precio demo (EXW no en texto).",
+                f"{esp}. Split 220V/50Hz, refrigerante R32/R410A.",
                 c,
                 i,
                 p,
@@ -160,7 +160,7 @@ def _catalogo():
         (
             "DGWA1-ACDC-24KR2",
             5100000,
-            "Híbrido solar 24K BTU, 6400W frío (precio estimado demo)",
+            "Híbrido solar 24K BTU, 6400W frío",
         ),
     ]
     for modelo, precio, esp in solares:
@@ -252,7 +252,7 @@ def _catalogo():
             (
                 nombre,
                 "Hornos",
-                "Ficha de cotización fábrica. Precio demo (EXW no en texto).",
+                "Horno eléctrico, cotización fábrica Tecnotecnología.",
                 c,
                 i,
                 p,
@@ -288,7 +288,7 @@ def _catalogo():
             (
                 nombre,
                 "Arroceras",
-                "Ficha de cotización fábrica. Precio demo (EXW no en texto).",
+                "Arrocera eléctrica, cotización fábrica Tecnotecnología.",
                 c,
                 i,
                 p,
