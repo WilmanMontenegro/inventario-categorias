@@ -114,11 +114,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 UNFOLD = {
     "SITE_TITLE": "Technotech",
     "SITE_HEADER": "Technotech",
-    "SITE_SUBHEADER": "Container → empresa",
+    "SITE_SUBHEADER": "",
     "SITE_URL": "/",
     "SITE_ICON": {
         "light": lambda request: static("inventario/brand/technotech-mark.png"),
         "dark": lambda request: static("inventario/brand/technotech-mark.png"),
+    },
+    "SITE_LOGO": {
+        "light": lambda request: static("inventario/brand/technotech-logo.png"),
+        "dark": lambda request: static("inventario/brand/technotech-logo.png"),
     },
     "SHOW_HISTORY": False,
     "SHOW_VIEW_ON_SITE": False,

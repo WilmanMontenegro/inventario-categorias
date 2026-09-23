@@ -36,7 +36,17 @@
   gap: 0.5rem;
 }
 
-/* Admin Unfold: ícono de marca sin recorte agresivo */
+/* Admin Unfold: logo completo (wordmark), no el mark recortado */
+img[src*="technotech-logo"] {
+  object-fit: contain !important;
+  width: auto !important;
+  max-width: min(11.5rem, 100%) !important;
+  height: auto !important;
+  max-height: 2.75rem !important;
+  margin-right: 0 !important;
+  background: transparent !important;
+}
+
 img[src*="technotech-mark"],
 img[src*="eureka-mark"] {
   object-fit: contain !important;
