@@ -1,4 +1,4 @@
-/* Marca Eureka s&s */
+/* Marca Technotech */
 
 .brand-logo {
   display: block;
@@ -7,7 +7,7 @@
 }
 
 .brand-logo--auth {
-  width: min(7.25rem, 48%);
+  width: min(16rem, 92%);
   height: auto;
   margin: 0 auto var(--espacio-2);
 }
@@ -20,7 +20,23 @@
   background: var(--color-superficie);
 }
 
+.brand-logo--side-full {
+  width: min(11.5rem, 100%);
+  height: auto;
+  max-height: 2.75rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  object-position: left center;
+  background: transparent;
+}
+
+.dash__brand--wordmark {
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* Admin Unfold: ícono de marca sin recorte agresivo */
+img[src*="technotech-mark"],
 img[src*="eureka-mark"] {
   object-fit: contain !important;
   width: auto !important;

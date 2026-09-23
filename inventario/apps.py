@@ -9,7 +9,7 @@ class InventarioConfig(AppConfig):
     def ready(self):
         from unfold.sites import UnfoldAdminSite
 
-        UnfoldAdminSite.site_header = "Eureka s&s"
-        UnfoldAdminSite.site_title = "Eureka s&s"
+        UnfoldAdminSite.site_header = "Technotech"
+        UnfoldAdminSite.site_title = "Technotech"
         UnfoldAdminSite.index_title = "Inicio"
         UnfoldAdminSite.site_url = "/"

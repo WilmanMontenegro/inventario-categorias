@@ -110,15 +110,15 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Acento aguamarina (#0d9488) — escala OKLCH para Unfold
-# Marca empresa: Eureka s&s S.A.S
+# Marca empresa: Technotech (demo cliente)
 UNFOLD = {
-    "SITE_TITLE": "Eureka s&s",
-    "SITE_HEADER": "Eureka s&s",
+    "SITE_TITLE": "Technotech",
+    "SITE_HEADER": "Technotech",
     "SITE_SUBHEADER": "Container → empresa",
     "SITE_URL": "/",
     "SITE_ICON": {
-        "light": lambda request: static("inventario/brand/eureka-mark.png"),
-        "dark": lambda request: static("inventario/brand/eureka-mark.png"),
+        "light": lambda request: static("inventario/brand/technotech-mark.png"),
+        "dark": lambda request: static("inventario/brand/technotech-mark.png"),
     },
     "SHOW_HISTORY": False,
     "SHOW_VIEW_ON_SITE": False,
