@@ -26,4 +26,5 @@ def dashboard_callback(request, context):
 
 
 def unfold_stylesheet(request):
-    return static("inventario/css/admin-unfold.css")
+    # v= cache-bust cuando cambia la marca
+    return static("inventario/css/admin-unfold.css") + "?v=tt104"

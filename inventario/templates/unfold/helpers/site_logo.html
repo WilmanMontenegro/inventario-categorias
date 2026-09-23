@@ -1,0 +1,28 @@
+{% load i18n static %}
+{# Logo Technotech completo, centrado horizontalmente en el sidebar #}
+<a href="{% url 'admin:index' %}" class="flex items-center justify-center w-full px-2" title="Technotech">
+  {% if site_logo.light and site_logo.dark %}
+  <img
+    src="{{ site_logo.light }}"
+    alt="Technotech"
+    class="block dark:hidden h-10 w-auto max-w-[12rem] object-contain mx-auto"
+    width="200"
+    height="48"
+  >
+  <img
+    src="{{ site_logo.dark }}"
+    alt="Technotech"
+    class="hidden dark:block h-10 w-auto max-w-[12rem] object-contain mx-auto"
+    width="200"
+    height="48"
+  >
+  {% else %}
+  <img
+    src="{% if site_logo %}{{ site_logo }}{% else %}{% static 'inventario/brand/technotech-logo.png' %}{% endif %}"
+    alt="Technotech"
+    class="h-10 w-auto max-w-[12rem] object-contain mx-auto"
+    width="200"
+    height="48"
+  >
+  {% endif %}
+</a>
