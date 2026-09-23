@@ -117,8 +117,8 @@
   }
 
   .brand-logo--auth {
-    width: min(7.5rem, 55%);
-    margin-bottom: var(--espacio-2);
+    width: min(18rem, 90%);
+    margin-bottom: var(--espacio-3);
   }
 }
 

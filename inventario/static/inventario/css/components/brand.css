@@ -7,9 +7,10 @@
 }
 
 .brand-logo--auth {
-  width: min(16rem, 92%);
+  width: min(22rem, 96%);
   height: auto;
-  margin: 0 auto var(--espacio-2);
+  margin: 0 auto var(--espacio-4);
+  background: transparent;
 }
 
 .brand-logo--side {
