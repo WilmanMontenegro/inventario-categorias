@@ -9,7 +9,7 @@
 @import url("tokens.css?v=ds100");
 @import url("base.css?v=ds100");
 
-@import url("layouts/dash.css?v=ds100");
+@import url("layouts/dash.css?v=ds101");
 @import url("layouts/auth.css?v=ds100");
 @import url("layouts/compra.css?v=ds100");
 
@@ -23,7 +23,7 @@
 @import url("components/table.css?v=ds100");
 @import url("components/card.css?v=ds100");
 @import url("components/kpi.css?v=ds100");
-@import url("components/product-card.css?v=ds100");
+@import url("components/product-card.css?v=ds101");
 @import url("components/panel.css?v=ds100");
 @import url("components/empty.css?v=ds100");
 @import url("components/lista-acciones.css?v=ds100");

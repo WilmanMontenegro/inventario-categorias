@@ -131,6 +131,23 @@
   font-weight: 600;
 }
 
+.dash__nav--cats {
+  max-height: min(52vh, 24rem);
+  overflow-y: auto;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
+}
+
+.dash__nav-link--cat {
+  height: 34px;
+  font-size: var(--texto-sm);
+}
+
+.dash__nav-link--cat.is-active {
+  background: color-mix(in srgb, var(--color-accion) 12%, transparent);
+  color: var(--color-accion-ink);
+}
+
 .dash__side-foot {
   flex-shrink: 0;
   position: relative;

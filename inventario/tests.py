@@ -102,6 +102,21 @@ class CompraDemoTests(TestCase):
         resp = client.get("/catalogo/")
         self.assertContains(resp, "unidad")
 
+    def test_producto_detalle(self):
+        from django.contrib.auth import get_user_model
+
+        client = Client()
+        client.force_login(get_user_model().objects.get(username="unilago"))
+        inv = Inventario.objects.select_related("producto").first()
+        resp = client.get(reverse("producto_detalle", args=[inv.pk]))
+        self.assertEqual(resp.status_code, 200)
+        self.assertContains(resp, inv.producto.nombre)
+        self.assertContains(resp, "Volver al catálogo")
+        self.assertContains(resp, "Agregar")
+        # Card del catálogo enlaza a la ficha
+        cat = client.get("/catalogo/")
+        self.assertContains(cat, reverse("producto_detalle", args=[inv.pk]))
+
 
 class CategoriaModalAdminTests(TestCase):
     def setUp(self):

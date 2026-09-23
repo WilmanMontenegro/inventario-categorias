@@ -37,13 +37,28 @@
       <h2 class="dash__nav-label">Compra</h2>
       <nav class="dash__nav" aria-label="Principal">
         <a
-          class="dash__nav-link{% if request.resolver_match.url_name == 'catalogo' %} is-active{% endif %}"
+          class="dash__nav-link{% if request.resolver_match.url_name == 'catalogo' or request.resolver_match.url_name == 'producto_detalle' %} is-active{% endif %}"
           href="{% url 'catalogo' %}"
         >
           <span class="material-symbols-outlined dash__nav-ico" aria-hidden="true">storefront</span>
           <span>Catálogo</span>
         </a>
       </nav>
+      {% if categorias %}
+      <h2 class="dash__nav-label">Categorías</h2>
+      <nav class="dash__nav dash__nav--cats" aria-label="Categorías">
+        <a
+          class="dash__nav-link dash__nav-link--cat{% if request.resolver_match.url_name == 'catalogo' and not categoria_activa %} is-active{% endif %}"
+          href="{% url 'catalogo' %}"
+        >Todas</a>
+        {% for cat in categorias %}
+        <a
+          class="dash__nav-link dash__nav-link--cat{% if categoria_activa.id == cat.id %} is-active{% endif %}"
+          href="{% url 'catalogo' %}?categoria={{ cat.id }}"
+        >{{ cat.nombre }}</a>
+        {% endfor %}
+      </nav>
+      {% endif %}
     </div>
 
     <div class="dash__side-foot">

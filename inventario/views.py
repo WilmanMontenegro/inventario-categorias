@@ -46,7 +46,27 @@ def _badge_context(request):
         ).first()
         if carrito:
             cantidad = carrito.cantidad_items
-    return {"carrito_cantidad": cantidad, "container_activo": container}
+    categorias = []
+    categoria_activa = None
+    if container:
+        categorias = list(
+            Categoria.objects.filter(
+                pk__in=Inventario.objects.filter(
+                    container=container, cantidad__gt=0
+                ).values_list("producto__categoria_id", flat=True)
+            ).order_by("nombre")
+        )
+        cat_id = request.GET.get("categoria")
+        if cat_id:
+            categoria_activa = next(
+                (c for c in categorias if str(c.pk) == str(cat_id)), None
+            )
+    return {
+        "carrito_cantidad": cantidad,
+        "container_activo": container,
+        "categorias": categorias,
+        "categoria_activa": categoria_activa,
+    }
 
 
 @require_GET
@@ -137,15 +157,9 @@ def catalogo(request):
 
     container = _container_activo()
     items = []
-    categorias = []
     categoria_activa = None
     if container:
         stock = Inventario.objects.filter(container=container, cantidad__gt=0)
-        categorias = list(
-            Categoria.objects.filter(
-                pk__in=stock.values_list("producto__categoria_id", flat=True)
-            ).order_by("nombre")
-        )
         cat_id = request.GET.get("categoria")
         if cat_id:
             categoria_activa = Categoria.objects.filter(pk=cat_id).first()
@@ -159,13 +173,41 @@ def catalogo(request):
             )
         )
     ctx = {
+        **_badge_context(request),
         "empresa": empresa,
         "items": items,
-        "categorias": categorias,
         "categoria_activa": categoria_activa,
-        **_badge_context(request),
     }
     return render(request, "inventario/catalogo.html", ctx)
+
+
+@login_required
+@require_GET
+def producto_detalle(request, inventario_id):
+    """Ficha del producto en el container activo (click desde el catálogo)."""
+    empresa = _empresa_de(request.user)
+    if empresa is None:
+        if request.user.is_staff:
+            return redirect("admin:index")
+        return redirect("entrar")
+
+    container = _container_activo()
+    if container is None:
+        return redirect("catalogo")
+
+    inventario = get_object_or_404(
+        Inventario.objects.select_related("producto", "producto__categoria"),
+        pk=inventario_id,
+        container=container,
+        cantidad__gt=0,
+    )
+    ctx = {
+        **_badge_context(request),
+        "empresa": empresa,
+        "item": inventario,
+        "categoria_activa": inventario.producto.categoria,
+    }
+    return render(request, "inventario/producto.html", ctx)
 
 
 @login_required

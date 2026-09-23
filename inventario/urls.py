@@ -14,6 +14,11 @@ urlpatterns = [
     path("salir/", views.salir, name="salir"),
     path("catalogo/", views.catalogo, name="catalogo"),
     path(
+        "catalogo/<int:inventario_id>/",
+        views.producto_detalle,
+        name="producto_detalle",
+    ),
+    path(
         "carrito/agregar/<int:inventario_id>/",
         views.agregar_carrito,
         name="agregar_carrito",

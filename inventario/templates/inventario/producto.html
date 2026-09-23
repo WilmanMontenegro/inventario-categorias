@@ -1,0 +1,72 @@
+{% extends "inventario/base_compra.html" %}
+{% load dinero %}
+{% block title %}{{ item.producto.nombre }}{% endblock %}
+{% block compra_cabecera %}
+<h1 class="dash__titulo" id="titulo-pagina">{{ item.producto.nombre }}</h1>
+<p class="dash__subtitulo">{{ item.producto.categoria.nombre }} · Container {{ item.container.codigo }}</p>
+{% endblock %}
+{% block compra_acciones %}
+<a class="btn btn--ghost btn--compacto" href="{% url 'catalogo' %}">Volver al catálogo</a>
+{% endblock %}
+{% block compra_contenido %}
+<article class="prod-detalle">
+  {% if item.producto.imagen %}
+  <div class="prod-detalle__media">
+    <img
+      src="{{ item.producto.imagen.url }}"
+      alt="{{ item.producto.nombre }}"
+      width="720"
+      height="540"
+      decoding="async"
+    >
+  </div>
+  {% else %}
+  <div class="prod-detalle__media prod-detalle__media--empty" aria-hidden="true">
+    {{ item.producto.inicial }}
+  </div>
+  {% endif %}
+
+  <div class="prod-detalle__info">
+    <span class="chip">{{ item.producto.categoria.nombre }}</span>
+    <p class="prod-detalle__precio">
+      <span class="visually-hidden">Precio de venta </span>{{ item.precio_venta|cop }}
+    </p>
+    <p class="prod-detalle__stock">{{ item.cantidad }} disponibles</p>
+
+    {% if item.producto.descripcion %}
+    <div class="prod-detalle__desc">
+      <h2 class="prod-detalle__desc-titulo">Descripción</h2>
+      <p>{{ item.producto.descripcion }}</p>
+    </div>
+    {% endif %}
+
+    <form
+      class="prod-detalle__form"
+      method="post"
+      action="{% url 'agregar_carrito' item.id %}"
+      hx-post="{% url 'agregar_carrito' item.id %}"
+      hx-target="#avisos"
+      hx-swap="innerHTML"
+      hx-disabled-elt="button"
+    >
+      {% csrf_token %}
+      <label class="campo__label" for="cant-detalle-{{ item.id }}">Cantidad</label>
+      <div class="prod-detalle__form-fila">
+        <input
+          id="cant-detalle-{{ item.id }}"
+          type="number"
+          name="cantidad"
+          min="1"
+          max="{{ item.cantidad }}"
+          value="1"
+          inputmode="numeric"
+          required
+          aria-describedby="stock-detalle-{{ item.id }}"
+        >
+        <span class="visually-hidden" id="stock-detalle-{{ item.id }}">Máximo {{ item.cantidad }}</span>
+        <button class="btn btn--obra" type="submit">Agregar</button>
+      </div>
+    </form>
+  </div>
+</article>
+{% endblock %}
